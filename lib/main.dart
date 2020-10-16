@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx_app/routes/app_routes.dart';
 import 'counter.dart';
 
 final counter = Counter();
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: AppRoutes.LANDING_PAGE,
+      routes: routes,
     );
   }
 }
@@ -40,7 +42,7 @@ class MyHomePage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             Observer(
-             builder: (_) => Text(
+              builder: (_) => Text(
                 '${counter.value}',
                 style: Theme.of(context).textTheme.headline4,
               ),
@@ -49,7 +51,9 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:(){counter.increment();},
+        onPressed: () {
+          counter.increment();
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
