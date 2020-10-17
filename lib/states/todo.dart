@@ -15,7 +15,7 @@ class Todo extends _Todo with _$Todo {
 
 abstract class _Todo with Store {
   @observable
-  List<TodoModel> todos = [];
+  ObservableList todos = ObservableList<TodoModel>();
 
   @observable
   bool isLoading = false;
@@ -26,8 +26,8 @@ abstract class _Todo with Store {
   }
 
   @action
-  void deleteTodo(String name) {
-    todos.removeWhere((todo) => todo.name == name);
+  void deleteTodo(int index) {
+    todos.removeAt(index);
   }
 
   @action

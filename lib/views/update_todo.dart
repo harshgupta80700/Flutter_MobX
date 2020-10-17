@@ -1,13 +1,17 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:mobx_app/models/todoModel.dart';
 import 'package:mobx_app/states/todo.dart';
 
-class AddTodo extends StatefulWidget {
+class UpdateTodo extends StatefulWidget {
   @override
-  _AddTodoState createState() => _AddTodoState();
+  _UpdateTodoState createState() => _UpdateTodoState();
 }
 
-class _AddTodoState extends State<AddTodo> {
+class _UpdateTodoState extends State<UpdateTodo> {
+
+  TodoModel todoModel;
 
   Todo _todo = Todo.getInstance();
 
@@ -15,10 +19,23 @@ class _AddTodoState extends State<AddTodo> {
   final descriptionTextEditingController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      todoModel = ModalRoute.of(context).settings.arguments;
+      nameTextEditingController.text = todoModel.name;
+      descriptionTextEditingController.text = todoModel.description;
+      setState(() {
+
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ADD TODO"),
+        title: Text("UPDATE TODO"),
       ),
       body: Container(
         padding: EdgeInsets.all(20),
@@ -28,7 +45,7 @@ class _AddTodoState extends State<AddTodo> {
             TextFormField(
               controller: nameTextEditingController,
               decoration: InputDecoration(
-                border: OutlineInputBorder()
+                  border: OutlineInputBorder()
               ),
             ),
             SizedBox(height: 10,),
@@ -41,16 +58,16 @@ class _AddTodoState extends State<AddTodo> {
             SizedBox(height: 30,),
             RaisedButton(
               onPressed: (){
-                TodoModel todoModel = TodoModel(
+                TodoModel newTodoModel = TodoModel(
                     name: nameTextEditingController.text.toString(),
                     description: descriptionTextEditingController.text.toString(),
-                    status: false
+                    status: true
                 );
-                _todo.addTodo(todoModel);
+                _todo.updateTodo(newTodoModel);
                 print(_todo.todos.length);
                 Navigator.pop(context);
               },
-              child: Text("ADD"),
+              child: Text("UPDATE"),
               color: Theme.of(context).primaryColor,
             )
           ],

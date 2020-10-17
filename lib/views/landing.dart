@@ -11,7 +11,9 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("TODO LIST"),
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: TodoList(),

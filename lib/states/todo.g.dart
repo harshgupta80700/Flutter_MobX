@@ -12,13 +12,13 @@ mixin _$Todo on _Todo, Store {
   final _$todosAtom = Atom(name: '_Todo.todos');
 
   @override
-  List<TodoModel> get todos {
+  ObservableList<dynamic> get todos {
     _$todosAtom.reportRead();
     return super.todos;
   }
 
   @override
-  set todos(List<TodoModel> value) {
+  set todos(ObservableList<dynamic> value) {
     _$todosAtom.reportWrite(value, super.todos, () {
       super.todos = value;
     });
@@ -53,11 +53,11 @@ mixin _$Todo on _Todo, Store {
   }
 
   @override
-  void deleteTodo(String name) {
+  void deleteTodo(int index) {
     final _$actionInfo =
         _$_TodoActionController.startAction(name: '_Todo.deleteTodo');
     try {
-      return super.deleteTodo(name);
+      return super.deleteTodo(index);
     } finally {
       _$_TodoActionController.endAction(_$actionInfo);
     }
