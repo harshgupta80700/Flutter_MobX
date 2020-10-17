@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mobx_app/states/todo.dart';
 
 class TodoCard extends StatelessWidget {
 
-  String name;
-  String description;
-  bool status;
+  final String name;
+  final String description;
+  final bool status;
 
   TodoCard({
     this.status,
     this.description,
     this.name
   });
+
+  Todo _todo = Todo.getInstance();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,13 +31,21 @@ class TodoCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Name"),
-                Text("Status")
+                Text(name),
+                Text(status.toString())
               ],
             ),
             SizedBox(height: 10,),
-            Text("description")
-          ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(description),
+                IconButton(icon: Icon(Icons.delete,color: Colors.red,),onPressed: (){
+                  _todo.deleteTodo(name);
+                },)
+              ],
+            ),],
+
         ),
       ),
     );

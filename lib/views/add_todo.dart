@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobx_app/models/todoModel.dart';
+import 'package:mobx_app/states/todo.dart';
 
 class AddTodo extends StatefulWidget {
   @override
@@ -6,10 +8,51 @@ class AddTodo extends StatefulWidget {
 }
 
 class _AddTodoState extends State<AddTodo> {
+
+  Todo _todo = Todo.getInstance();
+
+  final nameTextEditingController = TextEditingController();
+  final descriptionTextEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextFormField(
+              controller: nameTextEditingController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder()
+              ),
+            ),
+            SizedBox(height: 10,),
+            TextFormField(
+              controller: descriptionTextEditingController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder()
+              ),
+            ),
+            SizedBox(height: 30,),
+            RaisedButton(
+              onPressed: (){
+                TodoModel todoModel = TodoModel(
+                    name: nameTextEditingController.text.toString(),
+                    description: descriptionTextEditingController.text.toString(),
+                    status: false
+                );
+                _todo.addTodo(todoModel);
+                print(_todo.todos.length);
+              },
+              child: Text("ADD"),
+              color: Theme.of(context).primaryColor,
+            )
+          ],
+        ),
+      ),
     );
   }
 }
