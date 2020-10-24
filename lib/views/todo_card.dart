@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobx_app/models/todoModel.dart';
-import 'package:mobx_app/routes/app_routes.dart';
 import 'package:mobx_app/states/todo.dart';
 
 class TodoCard extends StatelessWidget {
@@ -39,7 +38,7 @@ class TodoCard extends StatelessWidget {
                   color: Colors.red,
                 ),
                 onPressed: () {
-                  _todo.deleteTodo(index);
+                  _todo.deleteTodo(todoModel);
                 },
               )
             ],

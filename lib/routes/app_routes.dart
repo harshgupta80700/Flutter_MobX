@@ -4,9 +4,9 @@ import 'package:mobx_app/views/landing.dart';
 import 'package:mobx_app/views/update_todo.dart';
 
 abstract class AppRoutes {
-  static String LANDING_PAGE = "/landing";
-  static String ADD_TODO = "/addtodo";
-  static String UPDATE_TODO = "/updatetodo";
+  static const String LANDING_PAGE = "/landing";
+  static const String ADD_TODO = "/addtodo";
+  static const String UPDATE_TODO = "/updatetodo";
 }
 
 Map<String, WidgetBuilder> routes = {

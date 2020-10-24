@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx_app/models/todoModel.dart';
 import 'package:mobx_app/states/todo.dart';
+import 'package:uuid/uuid.dart';
 
 class AddTodo extends StatefulWidget {
   @override
@@ -9,6 +10,8 @@ class AddTodo extends StatefulWidget {
 
 class _AddTodoState extends State<AddTodo> {
   Todo _todo = Todo.getInstance();
+
+  var uuid = new Uuid();
 
   final nameTextEditingController = TextEditingController();
   final descriptionTextEditingController = TextEditingController();
@@ -44,7 +47,9 @@ class _AddTodoState extends State<AddTodo> {
                     name: nameTextEditingController.text.toString(),
                     description:
                         descriptionTextEditingController.text.toString(),
-                    status: false);
+                    status: false,
+                  id: uuid.v1()
+                );
                 _todo.addTodo(todoModel);
                 print(_todo.todos.length);
                 Navigator.pop(context);

@@ -23,25 +23,25 @@ abstract class _Todo with Store {
   @action
   void addTodo(TodoModel todoModel) {
     todos.add(todoModel);
+    print(todoModel.name);
+    print(todoModel.description);
+    print(todoModel.status);
+    print(todoModel.id);
   }
 
   @action
-  void deleteTodo(int index) {
-    todos.removeAt(index);
+  void deleteTodo(TodoModel todoModel) {
+    todos.removeWhere((todo) => todo.id == todoModel.id);
   }
 
   @action
   void updateTodo(TodoModel todoModel) {
-    // TodoModel todoModelLocal = this.todos[index];
-    // todoModelLocal = todoModel;
-    // this.todos[index] = todoModelLocal;
-    print("one");
-    int index = todos.indexWhere((todo) => todo.name == todoModel.name);
+    print(todoModel.name);
+    print(todoModel.description);
+    print(todoModel.status);
+    print(todoModel.id);
+    int index = todos.indexWhere((todo) => todo.id == todoModel.id);
     print("index = " + index.toString());
-    //todos.replaceRange(start, end, newContents)
-    runInAction(() =>
-     todos.replaceRange(index, index + 1, [todoModel])
-    );
-    print("two");
+    todos.replaceRange(index, index + 1, [todoModel].toList());
   }
 }

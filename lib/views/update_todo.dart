@@ -57,11 +57,11 @@ class _UpdateTodoState extends State<UpdateTodo> {
                     name: nameTextEditingController.text.toString(),
                     description:
                         descriptionTextEditingController.text.toString(),
-                    status: true);
+                    status: true,
+                id: todoModel.id);
                 print(newTodoModel.name);
                 print(newTodoModel.description);
                 _todo.updateTodo(newTodoModel);
-                print("nornvuo");
                 print(_todo.todos.length);
                 Navigator.pop(context);
               },

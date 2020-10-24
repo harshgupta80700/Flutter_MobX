@@ -1,9 +1,8 @@
-import 'package:mobx/mobx.dart';
-
 class TodoModel {
+  String id;
   String name;
   String description;
   bool status;
 
-  TodoModel({this.name, this.status, this.description});
+  TodoModel({this.id,this.name, this.status, this.description});
 }
