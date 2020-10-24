@@ -8,7 +8,6 @@ class AddTodo extends StatefulWidget {
 }
 
 class _AddTodoState extends State<AddTodo> {
-
   Todo _todo = Todo.getInstance();
 
   final nameTextEditingController = TextEditingController();
@@ -27,25 +26,25 @@ class _AddTodoState extends State<AddTodo> {
           children: [
             TextFormField(
               controller: nameTextEditingController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder()
-              ),
+              decoration: InputDecoration(border: OutlineInputBorder()),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             TextFormField(
               controller: descriptionTextEditingController,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder()
-              ),
+              decoration: InputDecoration(border: OutlineInputBorder()),
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 TodoModel todoModel = TodoModel(
                     name: nameTextEditingController.text.toString(),
-                    description: descriptionTextEditingController.text.toString(),
-                    status: false
-                );
+                    description:
+                        descriptionTextEditingController.text.toString(),
+                    status: false);
                 _todo.addTodo(todoModel);
                 print(_todo.todos.length);
                 Navigator.pop(context);

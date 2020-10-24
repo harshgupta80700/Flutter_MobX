@@ -5,9 +5,5 @@ class TodoModel {
   String description;
   bool status;
 
-  TodoModel({
-    this.name,
-    this.status,
-    this.description
-  });
+  TodoModel({this.name, this.status, this.description});
 }

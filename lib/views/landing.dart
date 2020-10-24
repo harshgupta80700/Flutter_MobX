@@ -20,7 +20,7 @@ class _LandingState extends State<Landing> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: (){
+        onPressed: () {
           Navigator.pushNamed(context, AppRoutes.ADD_TODO);
         },
       ),

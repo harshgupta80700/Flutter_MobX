@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:mobx_app/models/todoModel.dart';
 import 'package:mobx_app/states/todo.dart';
@@ -10,7 +8,6 @@ class UpdateTodo extends StatefulWidget {
 }
 
 class _UpdateTodoState extends State<UpdateTodo> {
-
   TodoModel todoModel;
 
   Todo _todo = Todo.getInstance();
@@ -21,13 +18,11 @@ class _UpdateTodoState extends State<UpdateTodo> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       todoModel = ModalRoute.of(context).settings.arguments;
       nameTextEditingController.text = todoModel.name;
       descriptionTextEditingController.text = todoModel.description;
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
 
@@ -44,26 +39,29 @@ class _UpdateTodoState extends State<UpdateTodo> {
           children: [
             TextFormField(
               controller: nameTextEditingController,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder()
-              ),
+              decoration: InputDecoration(border: OutlineInputBorder()),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             TextFormField(
               controller: descriptionTextEditingController,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder()
-              ),
+              decoration: InputDecoration(border: OutlineInputBorder()),
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 TodoModel newTodoModel = TodoModel(
                     name: nameTextEditingController.text.toString(),
-                    description: descriptionTextEditingController.text.toString(),
-                    status: true
-                );
+                    description:
+                        descriptionTextEditingController.text.toString(),
+                    status: true);
+                print(newTodoModel.name);
+                print(newTodoModel.description);
                 _todo.updateTodo(newTodoModel);
+                print("nornvuo");
                 print(_todo.todos.length);
                 Navigator.pop(context);
               },

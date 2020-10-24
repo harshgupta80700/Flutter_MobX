@@ -32,7 +32,16 @@ abstract class _Todo with Store {
 
   @action
   void updateTodo(TodoModel todoModel) {
+    // TodoModel todoModelLocal = this.todos[index];
+    // todoModelLocal = todoModel;
+    // this.todos[index] = todoModelLocal;
+    print("one");
     int index = todos.indexWhere((todo) => todo.name == todoModel.name);
-    todos.replaceRange(index, index + 1, [todoModel]);
+    print("index = " + index.toString());
+    //todos.replaceRange(start, end, newContents)
+    runInAction(() =>
+     todos.replaceRange(index, index + 1, [todoModel])
+    );
+    print("two");
   }
 }
